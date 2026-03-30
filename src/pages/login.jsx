@@ -12,13 +12,10 @@ const Login = () => {
     setError("");
 
     try {
-      // Sends data to your POST /login endpoint
       const response = await API.post("/login", formData);
 
-      // Save the generated JWT token to local storage
       localStorage.setItem("token", response.data.token);
 
-      // Optionally, save user info to know if they are an Owner or Team member
       localStorage.setItem("user", JSON.stringify(response.data.user));
 
       navigate("/dashboard");

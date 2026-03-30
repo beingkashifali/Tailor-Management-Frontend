@@ -45,8 +45,6 @@ const App = () => {
               </ProtectedRoute>
             }
           />
-
-          {/* --- UPDATED: New Route for Manage Team --- */}
           <Route
             path="/manage-team"
             element={

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import API from "../utils/api"; // The API helper we created earlier
+import API from "../utils/api";
 
 const Signup = () => {
   // State to store what the user types in the form
@@ -11,25 +11,20 @@ const Signup = () => {
   });
   const [error, setError] = useState("");
 
-  // useNavigate is a hook from React Router to change pages
   const navigate = useNavigate();
 
   // Function that runs when the form is submitted
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevents the page from refreshing
+    e.preventDefault();
     setError("");
 
     try {
-      // Sends data to your POST /register endpoint
       const response = await API.post("/register", formData);
 
-      // Save the JWT token to the browser's local storage
       localStorage.setItem("token", response.data.token);
 
-      // Redirect the tailor to their new dashboard
       navigate("/dashboard");
     } catch (err) {
-      // If the backend sends an error (like "Username already exists"), show it
       setError(
         err.response?.data?.msg || "Something went wrong. Please try again.",
       );
